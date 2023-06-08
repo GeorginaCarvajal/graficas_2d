@@ -1,7 +1,13 @@
 from tkinter import*
+import random 
 
 BASE = 460
 ALTURA = 220
+RADIO = 50
+
+def modificar_arco(angulo):
+    c.itemconfig(arco, extent=angulo)
+
 
 Ventana_principal = Tk ()
 Ventana_principal.title("Graficas 2D")
@@ -52,15 +58,42 @@ c.place(x=10, y=10)
 
 #polig_1 = c.create_polygon(BASE/3,0,2*BASE/3,0,2*BASE/3,ALTURA/4,2*BASE,ALTURA/4,BASE,2*ALTURA/2.6,2*BASE/3,2*ALTURA/2.6,2*BASE/3,ALTURA,BASE/3,ALTURA,BASE/3,2*ALTURA/2.6,0,2*ALTURA/2.6,0,ALTURA/4,BASE/3,ALTURA/4, fill="red")
 
-base_1 = c.create_rectangle(0+100, ALTURA/2+80, BASE-100, ALTURA/2+100, fill="blue4", outline="black")
-base_2 = c.create_polygon(0+200, ALTURA/2+80, 0+235, ALTURA/2+5, 0+270, ALTURA/2+80,fill="blue", outline="black")
+"""base_1 = c.create_rectangle(0+100, ALTURA/2+80, BASE-100, ALTURA/2+100, fill="blue4", outline="black")
+base_2 = c.create_polygon(0+210, ALTURA/2+80, 0+230, ALTURA/2+5, 0+250, ALTURA/2+80,fill="blue", outline="black")
 
-arco_1 = c.create_arc(BASE/2-120, ALTURA/2-50, BASE-100, ALTURA/2+60, start=60, extent=60, fill="purple", outline="black")
-arco_2 = c.create_arc(BASE/2-120, ALTURA/2-50, BASE-100, ALTURA/2+60, start=180, extent=60, fill="purple", outline="black")
-arco_3 = c.create_arc(BASE/2-120, ALTURA/2-50, BASE-100, ALTURA/2+60, start=300, extent=60,fill="purple", outline="black")
+arco_1 = c.create_arc(BASE/2-65, ALTURA/2-40, BASE-165, ALTURA/2+40, start=60, extent=60, fill="purple", outline="black")
+arco_2 = c.create_arc(BASE/2-65, ALTURA/2-40, BASE-165, ALTURA/2+40, start=180, extent=60, fill="purple", outline="black")
+arco_3 = c.create_arc(BASE/2-65, ALTURA/2-40, BASE-165, ALTURA/2+40, start=300, extent=60,fill="purple", outline="black")"""
+
+
+
+"""for i in range(100):
+    color = "#"
+    for i in range(6):
+        color = color + random.choice("0123456789ABCDEF")
+    radio = random.randint(5,25)
+    x =  random.randint(0,BASE-2*radio)
+    y =  random.randint(0,ALTURA-2*radio)
+   
+    circulo = c.create_oval(x,y,x+2*radio,y+2*radio, fill=color)
+
+img_nave = PhotoImage(file="./img/nave2.png")
+nave = c.create_image(BASE/2,ALTURA/2, image=img_nave)
+
+for i in range(100):
+    radio = random.randint(5,25)
+x =  random.randint(0,BASE-2*radio)
+y =  random.randint(0,ALTURA-2*radio)
+p = c.create_arc(BASE/2-65, ALTURA/2-50, BASE-165, ALTURA/2+50, start=45, extent=280, fill="yellow")
+ojo = c.create_oval(BASE/2-30, ALTURA/2-30, BASE/2-10, ALTURA/2-10, fill="black")"""
+
+arco= c.create_arc(BASE/2-RADIO, ALTURA/2-RADIO, BASE/2+RADIO, ALTURA/2+RADIO, start=0, extent=0, fill="blue")
 
 frame_controles= Frame(Ventana_principal)
 frame_controles.config(bg="green", width=480, height=230)
 frame_controles.place(x=10, y=260)
+
+barra_deslizamiento = Scale(frame_controles, label="Angulo", from_=0 ,to=360, orient="horizontal", length=460, tickinterval=45, command=modificar_arco)
+barra_deslizamiento.place(x=10,y=10)
 
 Ventana_principal.mainloop()
